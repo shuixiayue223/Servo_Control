@@ -1,0 +1,111 @@
+VERSION ""
+
+NS_ :
+    NS_DESC_
+    CM_
+    BA_DEF_
+    BA_
+    VAL_
+    CAT_DEF_
+    CAT_
+    FILTER
+    BA_DEF_DEF_
+    BA_DEF_SGTYPE_
+    BA_SGTYPE_
+    SIG_TYPE_REF_
+    VAL_TABLE_
+    SIG_GROUP_
+    SIG_VALTYPE_
+    SIGTYPE_VALTYPE_
+    BO_TX_BU_
+    BA_DEF_REL_
+    BA_REL_
+    BA_DEF_DEF_REL_
+    BU_SG_REL_
+    BU_EV_REL_
+    BU_BO_REL_
+    SG_MUL_VAL_
+
+BS_:
+
+BU_: SERVO_NODE PC
+
+BO_ 129 SafetyCommand_Node1: 8 PC
+ SG_ Magic0 : 0|8@1+ (1,0) [0|255] "" SERVO_NODE
+ SG_ Magic1 : 8|8@1+ (1,0) [0|255] "" SERVO_NODE
+ SG_ Sequence : 16|8@1+ (1,0) [0|255] "" SERVO_NODE
+ SG_ Action : 24|8@1+ (1,0) [0|255] "" SERVO_NODE
+
+BO_ 257 Command_Node1: 8 PC
+ SG_ Operation : 0|8@1+ (1,0) [0|255] "" SERVO_NODE
+ SG_ CommandFlags : 8|8@1+ (1,0) [0|255] "" SERVO_NODE
+ SG_ Sequence : 16|8@1+ (1,0) [0|255] "" SERVO_NODE
+ SG_ Timeout : 24|8@1+ (0.01,0) [0|2.55] "s" SERVO_NODE
+ SG_ TargetRaw : 32|32@1- (1,0) [-2147483648|2147483647] "raw" SERVO_NODE
+
+BO_ 321 Acknowledge_Node1: 8 SERVO_NODE
+ SG_ Status : 0|8@1+ (1,0) [0|255] "" PC
+ SG_ Operation : 8|8@1+ (1,0) [0|255] "" PC
+ SG_ Sequence : 16|8@1+ (1,0) [0|255] "" PC
+ SG_ State : 24|8@1+ (1,0) [0|255] "" PC
+ SG_ Faults : 32|32@1+ (1,0) [0|4294967295] "" PC
+
+BO_ 385 ParameterCommand_Node1: 8 PC
+ SG_ ParameterId : 0|8@1+ (1,0) [0|255] "" SERVO_NODE
+ SG_ Reserved : 8|8@1+ (1,0) [0|255] "" SERVO_NODE
+ SG_ Sequence : 16|8@1+ (1,0) [0|255] "" SERVO_NODE
+ SG_ Reserved2 : 24|8@1+ (1,0) [0|255] "" SERVO_NODE
+ SG_ ValueRaw : 32|32@1- (1,0) [-2147483648|2147483647] "raw" SERVO_NODE
+
+BO_ 513 TelemetryFast_Node1: 8 SERVO_NODE
+ SG_ Position : 0|32@1- (0.001,0) [-2147483.648|2147483.647] "deg" PC
+ SG_ Speed : 32|16@1- (0.1,0) [-3276.8|3276.7] "deg/s" PC
+ SG_ Current : 48|16@1- (0.01,0) [-327.68|327.67] "A" PC
+
+BO_ 577 TelemetryPowerTemp_Node1: 8 SERVO_NODE
+ SG_ BusVoltage : 0|16@1+ (0.001,0) [0|65.535] "V" PC
+ SG_ MosTemp1 : 16|16@1- (0.01,0) [-327.68|327.67] "degC" PC
+ SG_ MosTemp2 : 32|16@1- (0.01,0) [-327.68|327.67] "degC" PC
+ SG_ Derate : 48|16@1+ (0.1,0) [0|6553.5] "%" PC
+
+BO_ 641 Status_Node1: 8 SERVO_NODE
+ SG_ Faults : 0|32@1+ (1,0) [0|4294967295] "" PC
+ SG_ State : 32|8@1+ (1,0) [0|255] "" PC
+ SG_ Mode : 40|8@1+ (1,0) [0|255] "" PC
+ SG_ Flags : 48|8@1+ (1,0) [0|255] "" PC
+ SG_ CommandAge : 56|8@1+ (0.01,0) [0|2.55] "s" PC
+
+BO_ 705 Heartbeat_Node1: 8 SERVO_NODE
+ SG_ Uptime : 0|32@1+ (1,0) [0|4294967295] "s" PC
+ SG_ Protocol : 32|16@1+ (1,0) [0|65535] "" PC
+ SG_ NodeId : 48|8@1+ (1,0) [0|255] "" PC
+ SG_ HeartbeatState : 56|8@1+ (1,0) [0|255] "" PC
+
+BO_ 769 CurrentDebug_Node1: 8 SERVO_NODE
+ SG_ CurrentAdcRaw : 0|16@1+ (1,0) [0|4095] "counts" PC
+ SG_ CurrentZeroAdc : 16|16@1+ (1,0) [0|4095] "counts" PC
+ SG_ CurrentInstant : 32|16@1- (0.001,0) [-32.768|32.767] "A" PC
+ SG_ CurrentFiltered : 48|16@1- (0.001,0) [-32.768|32.767] "A" PC
+
+BO_ 833 ControlDebug_Node1: 8 SERVO_NODE
+ SG_ TargetCurrent : 0|16@1- (0.001,0) [-32.768|32.767] "A" PC
+ SG_ Duty : 16|16@1- (0.1,0) [-3276.8|3276.7] "%" PC
+ SG_ CurrentAdcMin : 32|16@1+ (1,0) [0|4095] "counts" PC
+ SG_ CurrentAdcMax : 48|16@1+ (1,0) [0|4095] "counts" PC
+
+VAL_ 257 Operation 0 "DISABLE" 1 "CURRENT" 2 "SPEED" 3 "POSITION" 4 "PWM_INPUT" 5 "CLEAR_FAULTS" 6 "SET_ZERO" 7 "CALIBRATE_CURRENT" 8 "SAVE_CONFIG";
+VAL_ 129 Action 0 "ESTOP" 1 "DISABLE";
+VAL_ 321 Status 0 "OK" 2 "BAD_OPERATION" 5 "REJECTED";
+VAL_ 321 State 0 "BOOT" 1 "READY" 2 "ACTIVE" 3 "DERATING" 4 "FAULT";
+VAL_ 641 State 0 "BOOT" 1 "READY" 2 "ACTIVE" 3 "DERATING" 4 "FAULT";
+VAL_ 641 Mode 0 "DISABLED" 1 "CURRENT" 2 "SPEED" 3 "POSITION" 4 "PWM_INPUT";
+
+CM_ BO_ 257 "Command frame 0x101. TargetRaw is mode-dependent: current=mA, speed=mdps, position=mdeg. Timeout raw unit is 10ms; zero uses configured CAN timeout.";
+CM_ BO_ 513 "Fast telemetry 0x201. Position is signed millidegrees, speed raw is mdps/100, current raw is mA/10.";
+CM_ BO_ 577 "Power and temperature telemetry 0x241. Derate raw 1000 means 100%.";
+CM_ BO_ 641 "Status telemetry 0x281. CommandAge is capped at 2.55s by the firmware.";
+CM_ BO_ 769 "Current debug telemetry 0x301. Instant and filtered currents are signed mA.";
+CM_ BO_ 833 "Control debug telemetry 0x341. Duty raw is signed permille.";
+CM_ SG_ 641 Flags "Bit 0=enabled, bit 1=PWM valid, bit 2=I2C valid, bit 3=analog valid, bit 6=current calibrated.";
+CM_ SG_ 641 Faults "Bit 0=EStop, 1=overcurrent, 2=overtemp, 3=temp sensor, 4=bus undervoltage, 5=bus overvoltage, 6=position, 7=magnet, 8=angle mismatch, 9=CAN timeout, 10=PWM timeout, 11=ADC not ready, 12=CAN overflow, 13=config.";
+

@@ -1,0 +1,22 @@
+# Keil build output
+**/Objects/
+**/Listings/
+**/*.o
+**/*.d
+**/*.crf
+**/*.axf
+**/*.hex
+**/*.map
+**/*.lnp
+**/*.dep
+**/*.htm
+
+# Local IDE/user state
+**/*.uvguix.*
+**/*.uvoptx
+**/.coderider/
+
+# Temporary and backup files
+**/*.bak*
+**/*~
+
